@@ -1,0 +1,9 @@
+# Tells Railway's Nixpacks builder to install Caddy into the image.
+# Without this, a repo containing only HTML would be detected as static
+# but Caddy would not be available for the startCommand in railway.json.
+
+[phases.setup]
+nixPkgs = ["caddy"]
+
+[start]
+cmd = "caddy file-server --root /app --listen :8080"
